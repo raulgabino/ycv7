@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { PlaceCard } from "@/components/PlaceCard"
-import { MapPin, Loader2 } from "lucide-react"
+import { MapPin, Loader2, Sparkles } from "lucide-react" // Importamos el ícono de Sparkles
 import type { Place, City } from "@/lib/types"
 
 const cities: { id: City; name: string }[] = [
@@ -23,6 +23,41 @@ export default function Home() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [searched, setSearched] = useState(false)
+  
+  // --- NUEVA FUNCIÓN: Lógica para la búsqueda de la ruta random ---
+  const handleRandomRoute = async () => {
+    // Usamos el texto del input si existe, si no, una vibra genérica para que funcione.
+    const vibe = searchText.trim() || "una vibra sorprendente";
+    
+    setLoading(true)
+    setError(null)
+    setSearched(true)
+    setPlaces([])
+
+    try {
+      // Llamamos al nuevo endpoint /api/random-route
+      const response = await fetch("/api/random-route", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        // Enviamos la ciudad y la vibra actual
+        body: JSON.stringify({ city: selectedCity, vibe }),
+      })
+
+      if (!response.ok) {
+        throw new Error("La respuesta del servidor no fue exitosa.")
+      }
+
+      const data = await response.json()
+      // La respuesta del nuevo endpoint tiene una clave "recommendations"
+      setPlaces(data.recommendations || []) 
+    } catch (err) {
+      setError("No se pudo generar la ruta. Intenta de nuevo.")
+      console.error("Error en la ruta random:", err)
+    } finally {
+      setLoading(false)
+    }
+  }
+
 
   const handleSearch = async (vibe: string) => {
     if (!vibe) return
@@ -33,6 +68,7 @@ export default function Home() {
     setPlaces([])
 
     try {
+      // La búsqueda normal sigue llamando a /api/query
       const response = await fetch("/api/query", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -109,8 +145,13 @@ export default function Home() {
               placeholder="ej. un lugar para bellaquear"
               className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
             />
+            {/* --- BOTONES DE ACCIÓN ACTUALIZADOS --- */}
             <Button onClick={() => handleSearch(searchText)} disabled={loading}>
               {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : "Buscar"}
+            </Button>
+            {/* --- NUEVO BOTÓN "RUTA RANDOM" --- */}
+            <Button onClick={handleRandomRoute} disabled={loading} variant="outline" title="Sorpréndeme con una ruta inesperada">
+              <Sparkles className="h-4 w-4" />
             </Button>
           </div>
         </div>
