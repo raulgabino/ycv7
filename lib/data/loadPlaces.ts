@@ -1,3 +1,4 @@
+// ESTE ES EL CÓDIGO CORREGIDO Y DEFINITIVO PARA SOLUCIONAR EL ERROR.
 import type { Place, City } from "../types"
 import cdmxData from "@/data/places-cdmx.json"
 import monterreyData from "@/data/places-monterrey.json"
@@ -13,33 +14,27 @@ const placesData: Record<City, any> = {
 }
 
 function normalizePlace(place: any): Place {
-  // ** INICIO DE LA CORRECCIÓN **
-  // This logic fixes the crash.
-  // It checks if 'lat' and 'lng' exist in the original data.
-  // If they do, it creates a 'coordinates' array.
-  // If they don't, it provides a default value to prevent the application from crashing.
   const coordinates: [number, number] = place.lat && place.lng ? [place.lat, place.lng] : [0, 0]
 
   return {
     id: place.id?.toString() || "",
     name: place.nombre || place.name || "Nombre no disponible",
     category: place.categoría || place.category || "Categoría no disponible",
-    description: place.descripción_corta || place.descripcion || "",
-    // We use the 'coordinates' variable created above.
+    description: place.descripción_corta || place.descripcion || place.descripción || "",
     coordinates: coordinates,
     rank_score: place.rank_score || place.rating || 4.0,
     tags: place.playlists || place.tags || [],
-    rango_precios: place.rango_precios || "$$",
+    rango_precios: place.rango_precios || place.precio || "$$",
   }
-  // ** FIN DE LA CORRECCIÓN **
 }
 
 export function loadPlaces(city: City): Place[] {
   try {
     const data = placesData[city]
-    // The data for some cities is in a 'lugares' property.
+    // Ajuste para manejar diferentes nombres de clave ('lugares' o 'places')
     const placesArray = data.lugares || data.places || []
-    if (!placesArray) {
+
+    if (!placesArray || placesArray.length === 0) {
       return []
     }
     return placesArray.map(normalizePlace)
