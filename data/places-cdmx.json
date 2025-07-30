@@ -1,0 +1,65 @@
+{
+  "city": "cdmx",
+  "lugares": [
+    {
+      "id": "1",
+      "nombre": "Azul Histórico",
+      "descripcion": "Restaurante elegante en el Centro Histórico con vista a la Catedral, perfecto para cenas románticas",
+      "categoria": "Restaurante",
+      "direccion": "Isabel la Católica 30, Centro Histórico",
+      "precio": "$$$",
+      "horarios": "Lun-Dom 13:00-23:00",
+      "tags": ["romántico", "elegante", "vista", "centro histórico"],
+      "rating": 4.5,
+      "imagen": "/placeholder.svg?height=300&width=400"
+    },
+    {
+      "id": "2",
+      "nombre": "Parque México",
+      "descripcion": "Hermoso parque en la Condesa ideal para paseos románticos y picnics",
+      "categoria": "Parque",
+      "direccion": "Colonia Condesa, Cuauhtémoc",
+      "precio": "Gratis",
+      "horarios": "24 horas",
+      "tags": ["romántico", "naturaleza", "paseo", "condesa"],
+      "rating": 4.3,
+      "imagen": "/placeholder.svg?height=300&width=400"
+    },
+    {
+      "id": "3",
+      "nombre": "Pujol",
+      "descripcion": "Restaurante de alta cocina mexicana contemporánea, experiencia gastronómica única",
+      "categoria": "Restaurante",
+      "direccion": "Tennyson 133, Polanco",
+      "precio": "$$$$",
+      "horarios": "Mar-Sáb 13:30-16:00, 19:00-22:00",
+      "tags": ["alta cocina", "experiencia única", "polanco", "gourmet"],
+      "rating": 4.8,
+      "imagen": "/placeholder.svg?height=300&width=400"
+    },
+    {
+      "id": "4",
+      "nombre": "Xochimilco",
+      "descripcion": "Paseos en trajinera por los canales, música de mariachi y comida tradicional",
+      "categoria": "Atracción",
+      "direccion": "Xochimilco, Ciudad de México",
+      "precio": "$$",
+      "horarios": "Sáb-Dom 9:00-18:00",
+      "tags": ["tradicional", "trajinera", "mariachi", "familiar"],
+      "rating": 4.2,
+      "imagen": "/placeholder.svg?height=300&width=400"
+    },
+    {
+      "id": "5",
+      "nombre": "Terraza del Majestic",
+      "descripcion": "Bar en azotea con vista panorámica al Zócalo, ideal para cocteles al atardecer",
+      "categoria": "Bar",
+      "direccion": "Madero 73, Centro Histórico",
+      "precio": "$$$",
+      "horarios": "Lun-Dom 17:00-01:00",
+      "tags": ["vista panorámica", "cocteles", "atardecer", "zócalo"],
+      "rating": 4.4,
+      "imagen": "/placeholder.svg?height=300&width=400"
+    }
+  ]
+}

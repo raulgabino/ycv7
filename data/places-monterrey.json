@@ -1,0 +1,65 @@
+{
+  "city": "monterrey",
+  "lugares": [
+    {
+      "id": "1",
+      "nombre": "Cerro de la Silla",
+      "descripcion": "Mirador natural con vista espectacular de la ciudad, perfecto para senderismo y fotografía",
+      "categoria": "Mirador",
+      "direccion": "Guadalupe, Nuevo León",
+      "precio": "Gratis",
+      "horarios": "6:00-18:00",
+      "tags": ["naturaleza", "senderismo", "vista", "fotografía"],
+      "rating": 4.6,
+      "imagen": "/placeholder.svg?height=300&width=400"
+    },
+    {
+      "id": "2",
+      "nombre": "Pangea",
+      "descripcion": "Restaurante de cocina internacional en San Pedro, ambiente sofisticado",
+      "categoria": "Restaurante",
+      "direccion": "Lázaro Cárdenas 2400, San Pedro",
+      "precio": "$$$$",
+      "horarios": "Lun-Sáb 13:00-23:00",
+      "tags": ["sofisticado", "internacional", "san pedro", "elegante"],
+      "rating": 4.7,
+      "imagen": "/placeholder.svg?height=300&width=400"
+    },
+    {
+      "id": "3",
+      "nombre": "Barrio Antiguo",
+      "descripcion": "Zona histórica con arquitectura colonial, galerías de arte y vida nocturna",
+      "categoria": "Zona",
+      "direccion": "Centro de Monterrey",
+      "precio": "$$",
+      "horarios": "Variable",
+      "tags": ["histórico", "arte", "vida nocturna", "colonial"],
+      "rating": 4.3,
+      "imagen": "/placeholder.svg?height=300&width=400"
+    },
+    {
+      "id": "4",
+      "nombre": "Paseo Santa Lucía",
+      "descripción": "Canal artificial que conecta el centro con el Cerro de la Silla, paseos en lancha",
+      "categoria": "Atracción",
+      "direccion": "Centro de Monterrey",
+      "precio": "$$",
+      "horarios": "Mar-Dom 10:00-22:00",
+      "tags": ["paseo", "lancha", "familia", "relajante"],
+      "rating": 4.1,
+      "imagen": "/placeholder.svg?height=300&width=400"
+    },
+    {
+      "id": "5",
+      "nombre": "Mercado Juárez",
+      "descripcion": "Mercado tradicional con comida local, artesanías y ambiente auténtico",
+      "categoria": "Mercado",
+      "direccion": "Juárez y Aramberri, Centro",
+      "precio": "$",
+      "horarios": "Lun-Dom 8:00-18:00",
+      "tags": ["tradicional", "comida local", "artesanías", "auténtico"],
+      "rating": 4.0,
+      "imagen": "/placeholder.svg?height=300&width=400"
+    }
+  ]
+}
