@@ -7,15 +7,17 @@ import cdvictoriaData from "@/data/places-cdvictoria.json"
 const placesData: Record<City, any> = {
   cdmx: cdmxData,
   monterrey: monterreyData,
-  guadalajara: {}, // No tenemos datos de Guadalajara aún
+  guadalajara: {}, // No hay datos de Guadalajara aún
   guanajuato: guanajuatoData,
   cdvictoria: cdvictoriaData,
 }
 
 function normalizePlace(place: any): Place {
-  // Solución: Aseguramos que 'coordinates' siempre exista.
-  // Si el objeto original tiene 'lat' y 'lng', los usamos para crear el arreglo.
-  // Si no, asignamos un arreglo por defecto para evitar el crash.
+  // ** INICIO DE LA CORRECCIÓN **
+  // This logic fixes the crash.
+  // It checks if 'lat' and 'lng' exist in the original data.
+  // If they do, it creates a 'coordinates' array.
+  // If they don't, it provides a default value to prevent the application from crashing.
   const coordinates: [number, number] = place.lat && place.lng ? [place.lat, place.lng] : [0, 0]
 
   return {
@@ -23,20 +25,24 @@ function normalizePlace(place: any): Place {
     name: place.nombre || place.name || "Nombre no disponible",
     category: place.categoría || place.category || "Categoría no disponible",
     description: place.descripción_corta || place.descripcion || "",
-    coordinates: coordinates, // Usamos el arreglo que acabamos de crear.
+    // We use the 'coordinates' variable created above.
+    coordinates: coordinates,
     rank_score: place.rank_score || place.rating || 4.0,
     tags: place.playlists || place.tags || [],
     rango_precios: place.rango_precios || "$$",
   }
+  // ** FIN DE LA CORRECCIÓN **
 }
 
 export function loadPlaces(city: City): Place[] {
   try {
     const data = placesData[city]
-    if (!data || !data.lugares) {
+    // The data for some cities is in a 'lugares' property.
+    const placesArray = data.lugares || data.places || []
+    if (!placesArray) {
       return []
     }
-    return data.lugares.map(normalizePlace)
+    return placesArray.map(normalizePlace)
   } catch (error) {
     console.error(`Error loading places for ${city}:`, error)
     return []
