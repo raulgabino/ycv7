@@ -13,12 +13,17 @@ const placesData: Record<City, any> = {
 }
 
 function normalizePlace(place: any): Place {
+  // Solución: Aseguramos que 'coordinates' siempre exista.
+  // Si el objeto original tiene 'lat' y 'lng', los usamos para crear el arreglo.
+  // Si no, asignamos un arreglo por defecto para evitar el crash.
+  const coordinates: [number, number] = place.lat && place.lng ? [place.lat, place.lng] : [0, 0]
+
   return {
     id: place.id?.toString() || "",
     name: place.nombre || place.name || "Nombre no disponible",
     category: place.categoría || place.category || "Categoría no disponible",
-    description: place.descripción_corta || place.description || "",
-    coordinates: place.coordinates || [place.lat || 0, place.lng || 0],
+    description: place.descripción_corta || place.descripcion || "",
+    coordinates: coordinates, // Usamos el arreglo que acabamos de crear.
     rank_score: place.rank_score || place.rating || 4.0,
     tags: place.playlists || place.tags || [],
     rango_precios: place.rango_precios || "$$",
