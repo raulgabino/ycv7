@@ -30,10 +30,6 @@ function normalizePlace(place: any): Place {
 export function loadPlaces(city: City): Place[] {
   try {
     const data = placesData[city]
-
-    // **LA CORRECCIÓN CLAVE ESTÁ AQUÍ**
-    // Buscamos la lista de lugares tanto en la clave "lugares" como en "places".
-    // Esto hace que el código funcione para TODOS los archivos JSON.
     const placesArray = data.lugares || data.places || []
 
     if (!placesArray || placesArray.length === 0) {
