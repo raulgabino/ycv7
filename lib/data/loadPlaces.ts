@@ -1,4 +1,3 @@
-// ESTE ES EL CÓDIGO CORREGIDO Y DEFINITIVO PARA SOLUCIONAR EL ERROR.
 import type { Place, City } from "../types"
 import cdmxData from "@/data/places-cdmx.json"
 import monterreyData from "@/data/places-monterrey.json"
@@ -31,7 +30,10 @@ function normalizePlace(place: any): Place {
 export function loadPlaces(city: City): Place[] {
   try {
     const data = placesData[city]
-    // Ajuste para manejar diferentes nombres de clave ('lugares' o 'places')
+
+    // **LA CORRECCIÓN CLAVE ESTÁ AQUÍ**
+    // Buscamos la lista de lugares tanto en la clave "lugares" como en "places".
+    // Esto hace que el código funcione para TODOS los archivos JSON.
     const placesArray = data.lugares || data.places || []
 
     if (!placesArray || placesArray.length === 0) {
